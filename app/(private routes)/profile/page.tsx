@@ -3,7 +3,7 @@
 import Link from "next/link";
 import css from "./Profile.module.css";
 import Image from "next/image";
-import { useAuthStore } from "@/lib/store/userStore";
+import { useAuthStore } from "@/lib/store/authStore";
 
 export default function ProfilePage() {
   const user = useAuthStore((s) => s.user);

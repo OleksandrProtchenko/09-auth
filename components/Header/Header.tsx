@@ -3,7 +3,7 @@ import Link from "next/link";
 import css from "./Header.module.css";
 import AuthNavigation from "../AuthNavigation/AuthNavigation";
 
-import { useAuthStore } from "@/lib/store/userStore";
+import { useAuthStore } from "@/lib/store/authStore";
 
 export default function Header() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);

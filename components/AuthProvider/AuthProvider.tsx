@@ -1,7 +1,7 @@
 "use client";
 
 import { getMe, refresh } from "@/lib/api/clientApi";
-import { useAuthStore } from "@/lib/store/userStore";
+import { useAuthStore } from "@/lib/store/authStore";
 import { useEffect } from "react";
 
 interface AuthProviderProps {
