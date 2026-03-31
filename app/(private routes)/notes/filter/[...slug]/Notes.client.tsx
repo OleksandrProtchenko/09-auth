@@ -9,7 +9,7 @@ import Pagination from "@/components/Pagination/Pagination";
 import NoteList from "@/components/NoteList/NoteList";
 import { NoteFilter } from "@/types/note";
 import Link from "next/link";
-import { fetchNotes } from "@/lib/clientApi";
+import { fetchNotes } from "@/lib/api/clientApi";
 
 interface NotesClientProps {
   tag?: NoteFilter | "all";

@@ -7,7 +7,7 @@ import {
 import NotesClient from "./Notes.client";
 import { NoteFilter } from "@/types/note";
 import { Metadata } from "next";
-import { fetchNotes } from "@/lib/clientApi";
+import { fetchNotes } from "@/lib/api/clientApi";
 
 interface AppProps {
   params: Promise<{ slug: string[] }>;
