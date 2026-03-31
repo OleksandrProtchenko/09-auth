@@ -3,9 +3,10 @@
 import css from "./NoteForm.module.css";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { NoteFilter } from "@/types/note";
-import { createNote } from "@/lib/api";
+
 import { useRouter } from "next/navigation";
 import { useNoteDraft } from "@/lib/store/noteStore";
+import { createNote } from "@/lib/clientApi";
 
 export default function NoteForm() {
   const { noteData, setNoteData, clearNoteData } = useNoteDraft();
