@@ -21,6 +21,7 @@ export default function AuthNavigation() {
       console.error("Logout failed");
     }
   };
+
   return (
     <>
       {isAuthenticated ? (

@@ -3,13 +3,14 @@
 import css from "./NoteForm.module.css";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { NoteFilter } from "@/types/note";
-import { createNote } from "@/lib/api/api";
 import { useRouter } from "next/navigation";
 import { useNoteDraft } from "@/lib/store/noteStore";
+import { createNote } from "@/lib/api/clientApi";
 
 export default function NoteForm() {
   const { noteData, setNoteData, clearNoteData } = useNoteDraft();
   const queryClient = useQueryClient();
+  const router = useRouter();
   const { mutate } = useMutation({
     mutationFn: createNote,
     onSuccess: async () => {
@@ -19,8 +20,6 @@ export default function NoteForm() {
       router.refresh();
     },
   });
-
-  const router = useRouter();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

@@ -1,6 +1,5 @@
 "use client";
 
-import { fetchNotes } from "@/lib/api/api";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
@@ -10,6 +9,7 @@ import Pagination from "@/components/Pagination/Pagination";
 import NoteList from "@/components/NoteList/NoteList";
 import { NoteFilter } from "@/types/note";
 import Link from "next/link";
+import { fetchNotes } from "@/lib/api/clientApi";
 
 interface NotesClientProps {
   tag?: NoteFilter | "all";
