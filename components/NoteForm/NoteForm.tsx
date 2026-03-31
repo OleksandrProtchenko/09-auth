@@ -6,7 +6,7 @@ import { NoteFilter } from "@/types/note";
 
 import { useRouter } from "next/navigation";
 import { useNoteDraft } from "@/lib/store/noteStore";
-import { createNote } from "@/lib/clientApi";
+import { createNote } from "@/lib/api/clientApi";
 
 export default function NoteForm() {
   const { noteData, setNoteData, clearNoteData } = useNoteDraft();

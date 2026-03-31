@@ -1,11 +1,11 @@
 "use client";
 
-import { login } from "@/lib/clientApi";
+import { login } from "@/lib/api/clientApi";
 import css from "./SignIn.module.css";
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { ApiError } from "@/lib/api";
+import { ApiError } from "@/lib/api/api";
 import { useAuthStore } from "@/lib/store/userStore";
 
 export default function SignInPage() {

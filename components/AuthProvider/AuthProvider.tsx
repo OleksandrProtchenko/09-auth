@@ -1,6 +1,6 @@
 "use client";
 
-import { getMe, refresh } from "@/lib/clientApi";
+import { getMe, refresh } from "@/lib/api/clientApi";
 import { useAuthStore } from "@/lib/store/userStore";
 import { useEffect } from "react";
 

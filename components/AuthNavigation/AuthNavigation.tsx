@@ -5,7 +5,7 @@ import css from "./AuthNavigation.module.css";
 import { useAuthStore } from "@/lib/store/userStore";
 import { useRouter } from "next/navigation";
 
-import { logout } from "@/lib/clientApi";
+import { logout } from "@/lib/api/clientApi";
 
 export default function AuthNavigation() {
   const router = useRouter();

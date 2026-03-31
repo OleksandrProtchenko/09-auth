@@ -4,7 +4,7 @@ import css from "./EditProfile.module.css";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useAuthStore } from "@/lib/store/userStore";
-import { updateMe } from "@/lib/clientApi";
+import { updateMe } from "@/lib/api/clientApi";
 
 export default function EditProfilePage() {
   const router = useRouter();

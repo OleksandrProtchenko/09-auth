@@ -2,9 +2,9 @@
 
 import css from "./SignUp.module.css";
 import { useRouter } from "next/navigation";
-import { register } from "@/lib/clientApi";
+import { register } from "@/lib/api/clientApi";
 import { useState } from "react";
-import { ApiError } from "@/lib/api";
+import { ApiError } from "@/lib/api/api";
 
 export default function SignUpPage() {
   const router = useRouter();
