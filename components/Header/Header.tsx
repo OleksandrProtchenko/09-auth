@@ -2,12 +2,10 @@
 import Link from "next/link";
 import css from "./Header.module.css";
 import AuthNavigation from "../AuthNavigation/AuthNavigation";
-
 import { useAuthStore } from "@/lib/store/authStore";
 
 export default function Header() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
-
   return (
     <header className={css.header}>
       <Link href="/" aria-label="Home">
@@ -25,6 +23,7 @@ export default function Header() {
               </li>
             </>
           )}
+
           <AuthNavigation />
         </ul>
       </nav>

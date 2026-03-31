@@ -3,26 +3,27 @@
 import css from "./NoteForm.module.css";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { NoteFilter } from "@/types/note";
-
+import { createNote } from "@/lib/api/api";
 import { useRouter } from "next/navigation";
 import { useNoteDraft } from "@/lib/store/noteStore";
-import { createNote } from "@/lib/api/clientApi";
 
 export default function NoteForm() {
   const { noteData, setNoteData, clearNoteData } = useNoteDraft();
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: createNote,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["notes"] });
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["notes"] });
       clearNoteData();
       router.push("/notes/filter/all");
+      router.refresh();
     },
   });
 
   const router = useRouter();
 
-  const handleSubmit = () => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     mutate({ ...noteData });
   };
 
@@ -36,7 +37,7 @@ export default function NoteForm() {
   };
 
   return (
-    <form action={handleSubmit} className={css.form}>
+    <form onSubmit={handleSubmit} className={css.form}>
       <label className={css.formGroup}>
         Title
         <input
@@ -64,7 +65,7 @@ export default function NoteForm() {
           onChange={onChangeData}
           className={css.select}
           name="tag"
-          defaultValue={noteData.tag}
+          value={noteData.tag}
         >
           <option value={NoteFilter.Todo}>Todo</option>
           <option value={NoteFilter.Work}>Work</option>

@@ -8,12 +8,15 @@ login
 logout
 checkSession
 getMe
-updateMe */
+updateMe
+*/
 
 import { User } from "@/types/user";
 import { nextServer } from "./api";
 import { CreateNote, Note, NoteFilter } from "@/types/note";
 import { AxiosResponse } from "axios";
+
+/* Notes */
 
 export interface FetchNotesParams {
   page?: number;
@@ -26,22 +29,6 @@ export interface FetchNotesResponse {
   notes: Note[];
   totalPages: number;
 }
-
-interface RegisterData {
-  email: string;
-  password: string;
-}
-
-interface LoginData {
-  email: string;
-  password: string;
-}
-
-interface UpdateUserData {
-  username?: string;
-}
-
-/* Notes */
 
 export const fetchNotes = async (
   params: FetchNotesParams,
@@ -75,25 +62,34 @@ export const fetchNoteById = async (id: string): Promise<Note> => {
 };
 
 /* Auth */
+interface userData {
+  email: string;
+  password: string;
+}
 
-export const register = async (userData: RegisterData): Promise<User> => {
+export interface SessionResponse {
+  success: boolean;
+}
+
+interface UpdateUserData {
+  username?: string;
+}
+
+export const register = async (userData: userData): Promise<User> => {
   const { data } = await nextServer.post<User>("/auth/register", userData);
-  console.log("Registered user:", data);
   return data;
 };
 
-export const login = async (userData: LoginData): Promise<User> => {
+export const login = async (userData: userData): Promise<User> => {
   const { data } = await nextServer.post<User>("/auth/login", userData);
-  console.log("Logged in user:", data);
   return data;
 };
 
-export const logout = async () => {
-  const { data } = await nextServer.post("/auth/logout");
-  return data;
+export const logout = async (): Promise<void> => {
+  await nextServer.post("/auth/logout");
 };
 
-export const getMe = async () => {
+export const getMe = async (): Promise<User> => {
   const { data } = await nextServer.get<User>("/users/me");
   return data;
 };
@@ -108,7 +104,7 @@ export const refresh = async () => {
   return data;
 };
 
-export const checkSession = async () => {
-  const { data } = await nextServer.get("/auth/session");
-  return data;
+export const checkSession = async (): Promise<boolean> => {
+  const { data } = await nextServer.get<SessionResponse>("/auth/session");
+  return data.success;
 };
